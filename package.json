@@ -15,5 +15,18 @@
     "start": "cds-serve"
   },
   "private": true,
-  "cds": {}
+  "cds": {
+    "requires": {
+      "db": {
+        "[development]": {
+          "kind": "sqlite"
+        },
+        "[production]": {
+          "kind": "hana"
+        },
+        "auth": "mocked",
+        "destinations": true
+      }
+    }
+  }
 }

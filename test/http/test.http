@@ -1,0 +1,142 @@
+### BorrowingInfo
+# @name BorrowingInfo_PATCH
+PATCH http://localhost:4004/odata/v4/library-management/BorrowingInfo/b8db3f87-c08a-484a-9e8e-285b028fb31d
+Content-Type: application/json
+{
+  "status": "RETURNED"
+}
+
+### Try Borrowing a Book Without Borrow/Due Date (Should Fail)
+POST http://localhost:4004/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+
+{
+  "member_ID": "1a2b3c4d-1111-4e5f-9a8b-1c2d3e4f5a6b",
+  "bookCopy_ID": "0f1a2b3c-4d5e-4f6a-7b8c-9d0e1f2a3b4c",
+  "status": "BORROWED"
+}
+
+###  Borrow a Book When Copies Are Available (Should Pass)
+POST http://localhost:4004/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+
+{
+  "member_ID": "1a2b3c4d-1111-4e5f-9a8b-1c2d3e4f5a6b",
+  "bookCopy_ID": "1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f",
+  "borrowDate": "2025-10-16",
+  "dueDate": "2025-10-25",
+  "status": "BORROWED"
+}
+
+
+### Borrow a Book When No Copies Available (Should Fail)
+POST http://localhost:4004/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+
+{
+  "member_ID": "1a2b3c4d-1111-4e5f-9a8b-1c2d3e4f5a6b",
+  "bookCopy_ID": "7c8d9e0f-1a2b-4c3d-4e5f-6a7b8c9d0e1f",
+  "borrowDate": "2025-10-16",
+  "dueDate": "2025-10-25",
+  "status": "BORROWED"
+}
+
+
+
+###  Return a Book Without Return Date (Should Fail)
+PATCH http://localhost:4004/odata/v4/library-management/BorrowingInfo(33b8ac4e-ab7f-49f1-bace-6809658b02ea)
+Content-Type: application/json
+
+{
+  "status": "RETURNED"
+}
+
+
+### Return a Book Properly (Should Pass)
+PATCH http://localhost:4004/odata/v4/library-management/BorrowingInfo(33b8ac4e-ab7f-49f1-bace-6809658b02ea)
+Content-Type: application/json
+
+{
+  "status": "RETURNED",
+  "returnDate": "2025-10-20"
+}
+
+
+### Set Available Copies Negative (Should Fail)
+PATCH http://localhost:4004/odata/v4/library-management/Books(1da17a97-56b6-4abf-9f54-e39f91917153)
+Content-Type: application/json
+
+{
+  "availableCopies": -1
+}
+
+
+###  Set Available Copies Greater Than Total Copies (Should Fail)
+PATCH http://localhost:4004/odata/v4/library-management/Books(1da17a97-56b6-4abf-9f54-e39f91917153)
+Content-Type: application/json
+
+{
+  "availableCopies": 20,
+  "totalCopies": 10
+}
+
+
+###  Verify Updated Book Data
+GET http://localhost:4004/odata/v4/library-management/Books(1da17a97-56b6-4abf-9f54-e39f91917153)
+Accept: application/json
+
+### Get All Copies of a Specific Book
+GET http://localhost:4004/odata/v4/library-management/BookCopies?$filter=status eq 'AVAILABLE'
+Accept: application/json
+
+### Try Borrowing a Book When All Copies Are Already Borrowed (Should Fail)
+POST http://localhost:4004/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+
+{
+  "member_ID": "7a8b9c0d-7777-4e1f-3a2b-7c8d9e0f1a2b",
+  "bookCopy_ID": "3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f",
+  "borrowDate": "2025-10-16",
+  "dueDate": "2025-10-25",
+  "status": "BORROWED"
+}
+
+### Return One of the Borrowed Copies (Should Pass)
+PATCH http://localhost:4004/odata/v4/library-management/BorrowingInfo(7b38fbdb-a88c-4836-8ec4-97767f6f4fe8)
+Content-Type: application/json
+
+{
+  "status": "RETURNED",
+  "returnDate": "2025-10-20"
+}
+
+### Borrow Again After Copy Returned (Should Pass)
+POST http://localhost:4004/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+
+{
+  "member_ID": "7a8b9c0d-7777-4e1f-3a2b-7c8d9e0f1a2b",
+  "bookCopy_ID": "7c8d9e0f-1a2b-4c3d-4e5f-6a7b8c9d0e1f",
+  "borrowDate": "2025-10-21",
+  "dueDate": "2025-10-30",
+  "status": "BORROWED"
+}
+
+
+
+### Return borrowed book
+PATCH http://localhost:4004/odata/v4/library-management/BorrowingInfo(a7b8c9d0-1e2f-4a7b-4c3d-3f4a5b6c7d8e)
+Content-Type: application/json
+
+{
+  "status": "RETURNED",
+  "returnDate": "2025-10-20"
+}
+
+### Count how many times a specific book has been borrowed
+GET http://localhost:4004/odata/v4/library-management/BorrowingInfo/$count?$filter=bookCopy_ID eq '1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f' and status eq 'BORROWED'
+Accept: text/plainboo
+
+### Count how many times a specific book has been borrowed
+GET http://localhost:4004/odata/v4/library-management/BorrowingInfo/$count?$filter=bookCopy_ID eq '1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f' and status eq 'RETURNED'
+Accept: text/plainboo

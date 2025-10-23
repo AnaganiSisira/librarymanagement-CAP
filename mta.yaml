@@ -17,6 +17,7 @@ modules:
     parameters:
       instances: 1
       buildpack: nodejs_buildpack
+      memory: 256M
     build-parameters:
       builder: npm-ci
     provides:
@@ -25,7 +26,6 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: librarymanagementsystem-db
-
   - name: librarymanagementsystem-db-deployer
     type: hdb
     path: gen/db
@@ -33,7 +33,6 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: librarymanagementsystem-db
-
   - name: librarymanagementsystem
     type: approuter.nodejs
     path: app/router
@@ -53,7 +52,6 @@ modules:
         properties:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
-
 resources:
   - name: librarymanagementsystem-db
     type: com.sap.xs.hdi-container

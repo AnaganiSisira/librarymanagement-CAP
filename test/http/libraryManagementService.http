@@ -1,0 +1,506 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Books
+# @name Books_GET
+GET {{server}}/odata/v4/library-management/Books
+Authorization: Basic {{username}}:{{password}}
+
+
+### Books
+# @name Books_POST
+POST {{server}}/odata/v4/library-management/Books
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "14505236-0b2b-4663-b07c-d648b11808b4",
+  "title": "title-14505236",
+  "author": "author-14505236",
+  "publisher": "publisher-14505236",
+  "edition": "edition-14505236",
+  "year": 15,
+  "genre": {
+    "ID": "13198222-c233-40ab-9965-e722b4752ad8"
+  },
+  "totalCopies": 7,
+  "availableCopies": 29,
+  "description": "description-14505236",
+  "copies": [
+    {
+      "ID": "21651735-2962-4065-92ac-2f1bb1446223",
+      "copyNumber": 17,
+      "status": "DAMAGED",
+      "createdAt": "2019-05-01T00:00:00.000Z",
+      "createdBy": "createdBy.cw2l3@example.org",
+      "modifiedAt": "2014-08-04T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cw2l3@example.com"
+    },
+    {
+      "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365",
+      "copyNumber": 91,
+      "status": "BORROWED",
+      "createdAt": "2018-03-21T00:00:00.000Z",
+      "createdBy": "createdBy.cw2l4@example.net",
+      "modifiedAt": "2002-09-14T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cw2l4@example.org"
+    }
+  ],
+  "createdAt": "2020-03-23T00:00:00.000Z",
+  "createdBy": "createdBy.8mwb8@example.org",
+  "modifiedAt": "2006-10-17T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.8mwb8@example.com"
+}
+
+
+### Books
+# @name Books_PATCH
+PATCH {{server}}/odata/v4/library-management/Books/14505236-0b2b-4663-b07c-d648b11808b4
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "14505236-0b2b-4663-b07c-d648b11808b4",
+  "title": "title-14505236",
+  "author": "author-14505236",
+  "publisher": "publisher-14505236",
+  "edition": "edition-14505236",
+  "year": 15,
+  "genre": {
+    "ID": "13198222-c233-40ab-9965-e722b4752ad8"
+  },
+  "totalCopies": 7,
+  "availableCopies": 29,
+  "description": "description-14505236",
+  "copies": [
+    {
+      "ID": "21651735-2962-4065-92ac-2f1bb1446223",
+      "copyNumber": 17,
+      "status": "DAMAGED",
+      "createdAt": "2019-05-01T00:00:00.000Z",
+      "createdBy": "createdBy.cw2l3@example.org",
+      "modifiedAt": "2014-08-04T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cw2l3@example.com"
+    },
+    {
+      "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365",
+      "copyNumber": 91,
+      "status": "BORROWED",
+      "createdAt": "2018-03-21T00:00:00.000Z",
+      "createdBy": "createdBy.cw2l4@example.net",
+      "modifiedAt": "2002-09-14T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cw2l4@example.org"
+    }
+  ],
+  "createdAt": "2020-03-23T00:00:00.000Z",
+  "createdBy": "createdBy.8mwb8@example.org",
+  "modifiedAt": "2006-10-17T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.8mwb8@example.com"
+}
+
+
+### Books
+# @name Books_DELETE
+DELETE {{server}}/odata/v4/library-management/Books/14505236-0b2b-4663-b07c-d648b11808b4
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Genres
+# @name Genres_GET
+GET {{server}}/odata/v4/library-management/Genres
+Authorization: Basic {{username}}:{{password}}
+
+
+### Genres
+# @name Genres_POST
+POST {{server}}/odata/v4/library-management/Genres
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "13198222-c233-40ab-9965-e722b4752ad8",
+  "name": "name-13198222",
+  "description": "description-13198222",
+  "books": [
+    {
+      "ID": "82867449-a004-4092-916c-ce6d2ec97b6e",
+      "title": "title-8286744",
+      "author": "author-8286744",
+      "publisher": "publisher-8286744",
+      "edition": "edition-8286744",
+      "year": 55,
+      "totalCopies": 80,
+      "availableCopies": 40,
+      "description": "description-8286744",
+      "copies": [
+        {
+          "ID": "6003467f-5eba-4d46-84ee-e38c09cca689",
+          "copyNumber": 74,
+          "status": "BORROWED",
+          "createdAt": "2020-09-25T00:00:00.000Z",
+          "createdBy": "createdBy.3koaz@example.org",
+          "modifiedAt": "2011-03-20T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.3koaz@example.org"
+        },
+        {
+          "ID": "6003468b-9208-472b-927c-e98106cc9659",
+          "copyNumber": 60,
+          "status": "BORROWED",
+          "createdAt": "2017-05-13T00:00:00.000Z",
+          "createdBy": "createdBy.3kob0@example.net",
+          "modifiedAt": "2006-02-17T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.3kob0@example.org"
+        }
+      ],
+      "createdAt": "2005-02-07T00:00:00.000Z",
+      "createdBy": "createdBy.4xm3c@example.net",
+      "modifiedAt": "2008-11-21T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.4xm3c@example.com"
+    },
+    {
+      "ID": "82867457-e9a9-4917-9970-73b0b017e9ab",
+      "title": "title-8286745",
+      "author": "author-8286745",
+      "publisher": "publisher-8286745",
+      "edition": "edition-8286745",
+      "year": 92,
+      "totalCopies": 81,
+      "availableCopies": 63,
+      "description": "description-8286745",
+      "copies": [
+        {
+          "ID": "19947474-5ae0-443e-a1bc-db0b1fdfbf64",
+          "copyNumber": 53,
+          "status": "AVAILABLE",
+          "createdAt": "2008-04-14T00:00:00.000Z",
+          "createdBy": "createdBy.bvjki@example.com",
+          "modifiedAt": "2004-02-25T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.bvjki@example.org"
+        },
+        {
+          "ID": "19947475-860e-4ed7-bcf9-093c591fb434",
+          "copyNumber": 90,
+          "status": "AVAILABLE",
+          "createdAt": "2009-11-03T00:00:00.000Z",
+          "createdBy": "createdBy.bvjkj@example.net",
+          "modifiedAt": "2000-01-02T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.bvjkj@example.org"
+        }
+      ],
+      "createdAt": "2012-03-07T00:00:00.000Z",
+      "createdBy": "createdBy.4xm3d@example.net",
+      "modifiedAt": "2021-03-18T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.4xm3d@example.org"
+    }
+  ],
+  "createdAt": "2019-02-28T00:00:00.000Z",
+  "createdBy": "createdBy.7uvta@example.com",
+  "modifiedAt": "2001-04-10T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7uvta@example.org"
+}
+
+
+### Genres
+# @name Genres_PATCH
+PATCH {{server}}/odata/v4/library-management/Genres/13198222-c233-40ab-9965-e722b4752ad8
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "13198222-c233-40ab-9965-e722b4752ad8",
+  "name": "name-13198222",
+  "description": "description-13198222",
+  "books": [
+    {
+      "ID": "82867449-a004-4092-916c-ce6d2ec97b6e",
+      "title": "title-8286744",
+      "author": "author-8286744",
+      "publisher": "publisher-8286744",
+      "edition": "edition-8286744",
+      "year": 55,
+      "totalCopies": 80,
+      "availableCopies": 40,
+      "description": "description-8286744",
+      "copies": [
+        {
+          "ID": "6003467f-5eba-4d46-84ee-e38c09cca689",
+          "copyNumber": 74,
+          "status": "BORROWED",
+          "createdAt": "2020-09-25T00:00:00.000Z",
+          "createdBy": "createdBy.3koaz@example.org",
+          "modifiedAt": "2011-03-20T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.3koaz@example.org"
+        },
+        {
+          "ID": "6003468b-9208-472b-927c-e98106cc9659",
+          "copyNumber": 60,
+          "status": "BORROWED",
+          "createdAt": "2017-05-13T00:00:00.000Z",
+          "createdBy": "createdBy.3kob0@example.net",
+          "modifiedAt": "2006-02-17T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.3kob0@example.org"
+        }
+      ],
+      "createdAt": "2005-02-07T00:00:00.000Z",
+      "createdBy": "createdBy.4xm3c@example.net",
+      "modifiedAt": "2008-11-21T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.4xm3c@example.com"
+    },
+    {
+      "ID": "82867457-e9a9-4917-9970-73b0b017e9ab",
+      "title": "title-8286745",
+      "author": "author-8286745",
+      "publisher": "publisher-8286745",
+      "edition": "edition-8286745",
+      "year": 92,
+      "totalCopies": 81,
+      "availableCopies": 63,
+      "description": "description-8286745",
+      "copies": [
+        {
+          "ID": "19947474-5ae0-443e-a1bc-db0b1fdfbf64",
+          "copyNumber": 53,
+          "status": "AVAILABLE",
+          "createdAt": "2008-04-14T00:00:00.000Z",
+          "createdBy": "createdBy.bvjki@example.com",
+          "modifiedAt": "2004-02-25T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.bvjki@example.org"
+        },
+        {
+          "ID": "19947475-860e-4ed7-bcf9-093c591fb434",
+          "copyNumber": 90,
+          "status": "AVAILABLE",
+          "createdAt": "2009-11-03T00:00:00.000Z",
+          "createdBy": "createdBy.bvjkj@example.net",
+          "modifiedAt": "2000-01-02T00:00:00.000Z",
+          "modifiedBy": "modifiedBy.bvjkj@example.org"
+        }
+      ],
+      "createdAt": "2012-03-07T00:00:00.000Z",
+      "createdBy": "createdBy.4xm3d@example.net",
+      "modifiedAt": "2021-03-18T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.4xm3d@example.org"
+    }
+  ],
+  "createdAt": "2019-02-28T00:00:00.000Z",
+  "createdBy": "createdBy.7uvta@example.com",
+  "modifiedAt": "2001-04-10T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7uvta@example.org"
+}
+
+
+### Genres
+# @name Genres_DELETE
+DELETE {{server}}/odata/v4/library-management/Genres/13198222-c233-40ab-9965-e722b4752ad8
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### BookCopies
+# @name BookCopies_GET
+GET {{server}}/odata/v4/library-management/BookCopies
+Authorization: Basic {{username}}:{{password}}
+
+
+### BookCopies
+# @name BookCopies_POST
+POST {{server}}/odata/v4/library-management/BookCopies
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "6003467f-5eba-4d46-84ee-e38c09cca689",
+  "copyNumber": 74,
+  "status": "BORROWED",
+  "createdAt": "2020-09-25T00:00:00.000Z",
+  "createdBy": "createdBy.3koaz@example.org",
+  "modifiedAt": "2011-03-20T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.3koaz@example.org"
+}
+
+
+### BookCopies
+# @name BookCopies_PATCH
+PATCH {{server}}/odata/v4/library-management/BookCopies/6003467f-5eba-4d46-84ee-e38c09cca689
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "6003467f-5eba-4d46-84ee-e38c09cca689",
+  "copyNumber": 74,
+  "status": "BORROWED",
+  "createdAt": "2020-09-25T00:00:00.000Z",
+  "createdBy": "createdBy.3koaz@example.org",
+  "modifiedAt": "2011-03-20T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.3koaz@example.org"
+}
+
+
+### BookCopies
+# @name BookCopies_DELETE
+DELETE {{server}}/odata/v4/library-management/BookCopies/6003467f-5eba-4d46-84ee-e38c09cca689
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Members
+# @name Members_GET
+GET {{server}}/odata/v4/library-management/Members
+Authorization: Basic {{username}}:{{password}}
+
+
+### Members
+# @name Members_POST
+POST {{server}}/odata/v4/library-management/Members
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "9845166c-e79c-44f9-b009-9b8a5894c7de",
+  "firstName": "firstName-9845166",
+  "lastName": "lastName-9845166",
+  "email": "email-9845166",
+  "phone": "phone-9845166",
+  "address": "address-9845166",
+  "membershipDate": "2001-09-11",
+  "isActive": true,
+  "borrowings": [
+    {
+      "ID": "21708135-2602-4cd1-b13f-078cb520e047",
+      "bookCopy": {
+        "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365"
+      },
+      "borrowDate": "2012-07-07",
+      "dueDate": "2016-02-26",
+      "returnDate": "2013-03-24",
+      "status": "BORROWED",
+      "createdAt": "2012-05-22T00:00:00.000Z",
+      "createdBy": "createdBy.cxa3r@example.org",
+      "modifiedAt": "2009-08-16T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cxa3r@example.com"
+    },
+    {
+      "ID": "21708136-92a6-45b0-9f4b-2ffb208da980",
+      "bookCopy": {
+        "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365"
+      },
+      "borrowDate": "2010-02-22",
+      "dueDate": "2009-03-08",
+      "returnDate": "2005-11-26",
+      "status": "RETURNED",
+      "createdAt": "2005-11-19T00:00:00.000Z",
+      "createdBy": "createdBy.cxa3s@example.com",
+      "modifiedAt": "2015-02-01T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cxa3s@example.net"
+    }
+  ],
+  "createdAt": "2021-07-21T00:00:00.000Z",
+  "createdBy": "createdBy.5v0ku@example.com",
+  "modifiedAt": "2019-11-14T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.5v0ku@example.net"
+}
+
+
+### Members
+# @name Members_PATCH
+PATCH {{server}}/odata/v4/library-management/Members/9845166c-e79c-44f9-b009-9b8a5894c7de
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "9845166c-e79c-44f9-b009-9b8a5894c7de",
+  "firstName": "firstName-9845166",
+  "lastName": "lastName-9845166",
+  "email": "email-9845166",
+  "phone": "phone-9845166",
+  "address": "address-9845166",
+  "membershipDate": "2001-09-11",
+  "isActive": true,
+  "borrowings": [
+    {
+      "ID": "21708135-2602-4cd1-b13f-078cb520e047",
+      "bookCopy": {
+        "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365"
+      },
+      "borrowDate": "2012-07-07",
+      "dueDate": "2016-02-26",
+      "returnDate": "2013-03-24",
+      "status": "BORROWED",
+      "createdAt": "2012-05-22T00:00:00.000Z",
+      "createdBy": "createdBy.cxa3r@example.org",
+      "modifiedAt": "2009-08-16T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cxa3r@example.com"
+    },
+    {
+      "ID": "21708136-92a6-45b0-9f4b-2ffb208da980",
+      "bookCopy": {
+        "ID": "21651736-7baa-4f74-87fa-30dc7f1e7365"
+      },
+      "borrowDate": "2010-02-22",
+      "dueDate": "2009-03-08",
+      "returnDate": "2005-11-26",
+      "status": "RETURNED",
+      "createdAt": "2005-11-19T00:00:00.000Z",
+      "createdBy": "createdBy.cxa3s@example.com",
+      "modifiedAt": "2015-02-01T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.cxa3s@example.net"
+    }
+  ],
+  "createdAt": "2021-07-21T00:00:00.000Z",
+  "createdBy": "createdBy.5v0ku@example.com",
+  "modifiedAt": "2019-11-14T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.5v0ku@example.net"
+}
+
+
+### Members
+# @name Members_DELETE
+DELETE {{server}}/odata/v4/library-management/Members/9845166c-e79c-44f9-b009-9b8a5894c7de
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### BorrowingInfo
+# @name BorrowingInfo_GET
+GET {{server}}/odata/v4/library-management/BorrowingInfo
+Authorization: Basic {{username}}:{{password}}
+
+
+### BorrowingInfo
+# @name BorrowingInfo_POST
+POST {{server}}/odata/v4/library-management/BorrowingInfo
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "bookCopy_ID": "0f1a2b3c-4d5e-4f6a-7b8c-9d0e1f2a3b4c",
+  "borrowDate": "2012-07-07",
+  "dueDate": "2016-02-26",
+  "returnDate": "2013-03-24",
+  "status": "BORROWED",
+  "createdAt": "2012-05-22T00:00:00.000Z",
+  "createdBy": "createdBy.cxa3r@example.org",
+  "modifiedAt": "2009-08-16T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.cxa3r@example.com"
+}
+
+
+### BorrowingInfo
+# @name BorrowingInfo_PATCH
+PATCH {{server}}/odata/v4/library-management/BorrowingInfo/b8db3f87-c08a-484a-9e8e-285b028fb31d
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "status": "RETURNED"
+}
+
+
+### BorrowingInfo
+# @name BorrowingInfo_DELETE
+DELETE {{server}}/odata/v4/library-management/BorrowingInfo/21708135-2602-4cd1-b13f-078cb520e047
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}

@@ -2,11 +2,9 @@ namespace com.gov.librarymanagement;
 
 using { cuid , managed } from '@sap/cds/common';
 
-
 entity Books : cuid , managed {
   title            : String;
   author           : String;
-  isbn             : String(13);
   publisher        : String;
   edition          : String;
   year             : Integer;
@@ -17,7 +15,7 @@ entity Books : cuid , managed {
   copies           : Composition of many BookCopies on copies.book = $self;
 }
 
-entity BookCopies : cuid , managed {
+entity BookCopies  : cuid , managed {
   book             : Association to Books;
   copyNumber       : Integer;
   status           : String enum { AVAILABLE; BORROWED; DAMAGED };
@@ -30,7 +28,6 @@ entity Genres : cuid, managed {
 }
 
 entity Members :cuid , managed {
-  memberID         : String(10);
   firstName        : String;
   lastName         : String;
   email            : String;
@@ -49,6 +46,7 @@ entity BorrowingInfo : cuid , managed {
   returnDate       : Date;
   status           : String enum { BORROWED ; RETURNED ; OVERDUE };
 }
+
 
 
 
