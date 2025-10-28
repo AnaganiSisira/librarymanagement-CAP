@@ -1,54 +1,49 @@
 namespace com.gov.librarymanagement;
 
-using { cuid , managed } from '@sap/cds/common';
+using { cuid, managed } from '@sap/cds/common';
 
-entity Books : cuid , managed {
-  title            : String;
-  author           : String;
-  publisher        : String;
-  edition          : String;
+entity Genres : cuid, managed {
+  name         : String(100);
+  description  : String(500);
+  books        : Association to many Books on books.genre = $self; // fixed composition misuse
+}
+
+entity Books : cuid, managed {
+  title            : String(150);
+  author           : String(100);
+  publisher        : String(100);
+  edition          : String(50);
   year             : Integer;
   genre            : Association to Genres;
   totalCopies      : Integer;
-  availableCopies  : Integer;
-  description      : String;
-  copies           : Composition of many BookCopies on copies.book = $self;
+  @readonly availableCopies  : Integer;
+  description      : String(1000);
+  copies           : Association to many BookCopies on copies.book = $self;
 }
 
-entity BookCopies  : cuid , managed {
+entity BookCopies : cuid, managed {
   book             : Association to Books;
   copyNumber       : Integer;
   status           : String enum { AVAILABLE; BORROWED; DAMAGED };
 }
 
-entity Genres : cuid, managed {
-  name         : String;
-  description  : String;
-  books        : Composition of many Books on books.genre = $self;
-}
-
-entity Members :cuid , managed {
-  firstName        : String;
-  lastName         : String;
-  email            : String;
-  phone            : String;
-  address          : String;
+@assert.unique.email: [email]
+entity Members : cuid, managed {
+  firstName        : String(100);
+  lastName         : String(100);
+  email            : String(100);
+  phone            : String(20);
+  address          : String(500);
   membershipDate   : Date;
   isActive         : Boolean default true;
-  borrowings       : Composition of many BorrowingInfo on borrowings.member = $self;
+  borrowings       : Association to many BorrowingInfo on borrowings.member = $self;
 }
 
-entity BorrowingInfo : cuid , managed {
+entity BorrowingInfo : cuid, managed {
   member           : Association to Members;
   bookCopy         : Association to BookCopies;
   borrowDate       : Date;
   dueDate          : Date;
   returnDate       : Date;
-  status           : String enum { BORROWED ; RETURNED ; OVERDUE };
+  status           : String enum { BORROWED; RETURNED; OVERDUE };
 }
-
-
-
-
-
-
