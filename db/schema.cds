@@ -5,7 +5,7 @@ using { cuid, managed } from '@sap/cds/common';
 entity Genres : cuid, managed {
   name         : String(100);
   description  : String(500);
-  books        : Association to many Books on books.genre = $self; // fixed composition misuse
+  books        : Association to many Books on books.genre = $self; 
 }
 
 entity Books : cuid, managed {
